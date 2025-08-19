@@ -14,6 +14,12 @@ function Header() {
       slug: "/",
       active: true
     }, 
+
+     {
+      name: 'Chatbot',
+      slug: "/chatbot",
+      active: true
+    }, 
     {
       name: "Login",
       slug: "/login",

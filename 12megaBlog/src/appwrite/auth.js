@@ -10,8 +10,8 @@ export class AuthService {
 
     constructor() {
         this.client
-            .setEndpoint('http://localhost/v1')
-            .setProject('6839acda0006cd9c613b');
+            .setEndpoint(conf.appwriteUrl)
+            .setProject(conf.appwriteProjectId);
         this.account = new Account(this.client);
             
     }
@@ -32,8 +32,9 @@ export class AuthService {
 
     async login({email, password}) {
         try {
-            return await this.account.createEmailSession(email, password);
+            return await this.account?.createEmailPasswordSession(email, password)
         } catch (error) {
+             console.log("Appwrite Service :: login :: error", error);
             throw error;
         }
     }

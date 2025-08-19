@@ -14,6 +14,7 @@ import Signup from './pages/Signup'
 import EditPost from "./pages/EditPost";
 
 import Post from "./pages/Post";
+import ChatPage from './pages/ChatPage.jsx'
 
 import AllPosts from "./pages/AllPosts";
 
@@ -32,6 +33,14 @@ const router = createBrowserRouter([
                 <AuthLayout authentication={false}>
                     <Login />
                 </AuthLayout>
+            ),
+        },
+         {
+            path: "/chatbot",
+            element: (
+                // <AuthLayout authentication={false}>
+                    <ChatPage />
+                // </AuthLayout>
             ),
         },
         {
