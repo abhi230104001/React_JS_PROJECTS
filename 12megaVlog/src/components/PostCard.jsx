@@ -1,26 +1,32 @@
-import React from 'react'
-import appwriteService from "../appwrite/config"
-import { Link } from 'react-router-dom'
+import React from 'react';
+import appwriteService from "../appwrite/config";
+import { Link } from 'react-router-dom';
 
 function PostCard({ $id, title, featuredImage }) {
-  const imageUrl = featuredImage 
-    ? appwriteService.getFilePreview(featuredImage)
-    : "https://via.placeholder.com/300x200?text=No+Image";
+  let imageUrl = "https://placehold.co/600x400?text=No+Image";
+
+  if (featuredImage) {
+    imageUrl = appwriteService.getFilePreview(featuredImage);
+  }
 
   return (
     <Link to={`/post/${$id}`}>
-      <div className='w-full bg-gray-100 rounded-xl p-4'>
-        <div className='w-full justify-center mb-4'>
-          <img 
-            src={imageUrl} 
-            alt={title} 
-            className='rounded-xl object-cover w-full h-48'
+      <div className="w-full bg-white rounded-xl shadow-md hover:shadow-lg transition duration-300 p-4">
+        <div className="w-full mb-4">
+          <img
+            src={imageUrl}
+            alt={title}
+            className="rounded-xl object-cover w-full h-48"
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src = "https://placehold.co/600x400?text=No+Image";
+            }}
           />
         </div>
-        <h2 className='text-xl font-bold'>{title}</h2>
+        <h2 className="text-lg font-semibold text-gray-800 truncate">{title}</h2>
       </div>
     </Link>
-  )
+  );
 }
 
-export default PostCard
+export default PostCard;
